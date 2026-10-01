@@ -183,6 +183,79 @@ body.cover-ready {
   background: #1a100a;
 }
 
+.kali-cover-hotspot,
+.tara-cover-hotspot,
+.tripura-cover-hotspot,
+.bhairavi-cover-hotspot,
+.chinnamasta-cover-hotspot,
+.dhumavati-cover-hotspot,
+.bagalamukhi-cover-hotspot,
+.matangi-cover-hotspot,
+.kamala-cover-hotspot {
+  position: absolute;
+  top: 45%;
+  z-index: 170;
+  width: 13%;
+  height: 19%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.kali-cover-hotspot[hidden],
+.tara-cover-hotspot[hidden],
+.tripura-cover-hotspot[hidden],
+.bhairavi-cover-hotspot[hidden],
+.chinnamasta-cover-hotspot[hidden],
+.dhumavati-cover-hotspot[hidden],
+.bagalamukhi-cover-hotspot[hidden],
+.matangi-cover-hotspot[hidden],
+.kamala-cover-hotspot[hidden] {
+  display: none;
+}
+
+.kali-cover-hotspot {
+  left: 20.5%;
+}
+
+.tara-cover-hotspot {
+  left: 34.5%;
+}
+
+.tripura-cover-hotspot {
+  left: 47.5%;
+}
+
+.bhairavi-cover-hotspot {
+  left: 74%;
+}
+
+.chinnamasta-cover-hotspot {
+  left: 20.5%;
+  top: 68%;
+}
+
+.dhumavati-cover-hotspot {
+  left: 34.5%;
+  top: 68%;
+}
+
+.bagalamukhi-cover-hotspot {
+  left: 47.5%;
+  top: 68%;
+}
+
+.matangi-cover-hotspot {
+  left: 61%;
+  top: 68%;
+}
+
+.kamala-cover-hotspot {
+  left: 74%;
+  top: 68%;
+}
+
 .face.back {
   transform: rotateY(180deg);
   background:
@@ -199,6 +272,33 @@ body.cover-ready {
   display: block;
   pointer-events: none;
   user-select: none;
+}
+
+.selection-skip-button {
+  position: absolute;
+  z-index: 180;
+  top: 1.5%;
+  left: 50%;
+  width: clamp(5.5rem, 11vw, 9rem);
+  aspect-ratio: 3.6 / 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.selection-skip-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.selection-skip-button:focus-visible {
+  outline: 2px solid #ffe7a0;
+  outline-offset: 2px;
 }
 
 .plate {
@@ -249,6 +349,12 @@ body.cover-ready {
   margin-bottom: 0.1rem;
 }
 
+.face.front .plate.tripura-plate .tripura-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .plate.kali-plate .en {
   color: #5a2a16;
   margin-top: 0;
@@ -279,6 +385,12 @@ body.cover-ready {
   transform-origin: bottom center;
 }
 
+.face.front .plate.tara-plate .tara-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .plate.bhuvaneswari-plate .en {
   color: #5a2a16;
   font-size: clamp(0.9rem, 1.45vw, 1.85rem);
@@ -292,6 +404,12 @@ body.cover-ready {
 .plate.bhuvaneswari-plate .bn-image {
   transform: scaleY(1.16);
   transform-origin: bottom center;
+}
+
+.face.front .plate.bhuvaneswari-plate .bhuvaneswari-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .plate.bhairavi-plate .en {
@@ -311,6 +429,12 @@ body.cover-ready {
   transform-origin: bottom center;
 }
 
+.face.front .plate.bhairavi-plate .bhairavi-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .plate.chinnamasta-plate .en {
   color: #5a2a16;
   font-size: clamp(1rem, 1.75vw, 2.2rem);
@@ -328,6 +452,12 @@ body.cover-ready {
   transform-origin: bottom center;
 }
 
+.face.front .plate.chinnamasta-plate .chinnamasta-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .plate.dhumavati-plate .en {
   color: #5a2a16;
   font-size: clamp(1rem, 1.7vw, 2.2rem);
@@ -343,6 +473,12 @@ body.cover-ready {
   height: 66%;
   transform: scaleY(1.16);
   transform-origin: bottom center;
+}
+
+.face.front .plate.dhumavati-plate .dhumavati-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .plate.bagalamukhi-plate .en {
@@ -363,6 +499,12 @@ body.cover-ready {
   transform-origin: center center;
 }
 
+.face.front .plate.bagalamukhi-plate .bagalamukhi-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .plate.matangi-plate .en {
   color: #5a2a16;
   font-size: clamp(1.08rem, 1.8vw, 2.35rem);
@@ -379,6 +521,12 @@ body.cover-ready {
   object-fit: contain;
   transform: scaleY(1.24);
   transform-origin: bottom center;
+}
+
+.face.front .plate.matangi-plate .matangi-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .plate.kamala-plate .en {
@@ -399,10 +547,26 @@ body.cover-ready {
   transform-origin: bottom center;
 }
 
+.face.front .plate.kamala-plate .kamala-nameplate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .face.front .plate .bn-image {
   width: 92%;
   height: 66%;
   object-fit: fill;
+}
+
+.face.front .plate.kali-plate .kali-nameplate-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 145%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -53%);
 }
 
 .face.front .plate.bhuvaneswari-plate .bn-image {

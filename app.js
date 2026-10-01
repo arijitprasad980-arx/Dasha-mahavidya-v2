@@ -1,5 +1,6 @@
 const DESKTOP_PAGES = [
   { src: "COVER PAGE 2.png", title: "", bn: "", cover: true },
+  { src: "COVER PAGE 1.png", title: "", bn: "", cover: true },
   { src: "KALI.png", title: "Kali", bn: "কালী" },
   { src: "TARA.png", title: "Tara", bn: "তারা" },
   { src: "TRIPURA SUNDARI.png", title: "Tripura Sundari", bn: "ত্রিপুরা সুন্দরী" },
@@ -14,6 +15,7 @@ const DESKTOP_PAGES = [
 
 const MOBILE_PAGES = [
   { src: "AND COVER 2.png", title: "", bn: "", cover: true },
+  { src: "COVER PAGE 1.png", title: "", bn: "", cover: true },
   { src: "AND KALI.png", title: "Kali", bn: "কালী" },
   { src: "AND TARA.png", title: "Tara", bn: "তারা" },
   { src: "AND TRIPURA SUNDARI.png", title: "Tripura Sundari", bn: "ত্রিপুরা সুন্দরী" },
@@ -34,6 +36,105 @@ const hint = document.getElementById("hint");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const audioToggleBtn = document.getElementById("audioToggleBtn");
+const kaliCoverHotspot = document.createElement("button");
+kaliCoverHotspot.type = "button";
+kaliCoverHotspot.className = "kali-cover-hotspot";
+kaliCoverHotspot.setAttribute("aria-label", "Open Kali page");
+kaliCoverHotspot.hidden = true;
+kaliCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToKaliFromContents();
+});
+
+const taraCoverHotspot = document.createElement("button");
+taraCoverHotspot.type = "button";
+taraCoverHotspot.className = "tara-cover-hotspot";
+taraCoverHotspot.setAttribute("aria-label", "Open Tara page");
+taraCoverHotspot.hidden = true;
+taraCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToTaraFromContents();
+});
+
+const tripuraCoverHotspot = document.createElement("button");
+tripuraCoverHotspot.type = "button";
+tripuraCoverHotspot.className = "tripura-cover-hotspot";
+tripuraCoverHotspot.setAttribute("aria-label", "Open Tripura Sundari page");
+tripuraCoverHotspot.hidden = true;
+tripuraCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToTripuraFromContents();
+});
+
+const bhairaviCoverHotspot = document.createElement("button");
+bhairaviCoverHotspot.type = "button";
+bhairaviCoverHotspot.className = "bhairavi-cover-hotspot";
+bhairaviCoverHotspot.setAttribute("aria-label", "Open Bhairavi page");
+bhairaviCoverHotspot.hidden = true;
+bhairaviCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToBhairaviFromContents();
+});
+
+const chinnamastaCoverHotspot = document.createElement("button");
+chinnamastaCoverHotspot.type = "button";
+chinnamastaCoverHotspot.className = "chinnamasta-cover-hotspot";
+chinnamastaCoverHotspot.setAttribute("aria-label", "Open Chinnamasta page");
+chinnamastaCoverHotspot.hidden = true;
+chinnamastaCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToChinnamastaFromContents();
+});
+
+const dhumavatiCoverHotspot = document.createElement("button");
+dhumavatiCoverHotspot.type = "button";
+dhumavatiCoverHotspot.className = "dhumavati-cover-hotspot";
+dhumavatiCoverHotspot.setAttribute("aria-label", "Open Dhumavati page");
+dhumavatiCoverHotspot.hidden = true;
+dhumavatiCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToDhumavatiFromContents();
+});
+
+const bagalamukhiCoverHotspot = document.createElement("button");
+bagalamukhiCoverHotspot.type = "button";
+bagalamukhiCoverHotspot.className = "bagalamukhi-cover-hotspot";
+bagalamukhiCoverHotspot.setAttribute("aria-label", "Open Bagalamukhi page");
+bagalamukhiCoverHotspot.hidden = true;
+bagalamukhiCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToBagalamukhiFromContents();
+});
+
+const matangiCoverHotspot = document.createElement("button");
+matangiCoverHotspot.type = "button";
+matangiCoverHotspot.className = "matangi-cover-hotspot";
+matangiCoverHotspot.setAttribute("aria-label", "Open Matangi page");
+matangiCoverHotspot.hidden = true;
+matangiCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToMatangiFromContents();
+});
+
+const kamalaCoverHotspot = document.createElement("button");
+kamalaCoverHotspot.type = "button";
+kamalaCoverHotspot.className = "kamala-cover-hotspot";
+kamalaCoverHotspot.setAttribute("aria-label", "Open Kamala page");
+kamalaCoverHotspot.hidden = true;
+kamalaCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToKamalaFromContents();
+});
+
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const pageCloseSound = new Audio("book close sound.mp3.mpeg");
 pageCloseSound.preload = "auto";
@@ -319,6 +420,80 @@ function renderLeaves() {
     const front = document.createElement("div");
     front.className = "face front";
     front.innerHTML = `<img src="${page.src}" alt="${page.bn || page.title || "Book page"}" />`;
+    if (!page.cover && page.title) {
+      const selectionButton = document.createElement("button");
+      selectionButton.type = "button";
+      selectionButton.className = "selection-skip-button";
+      selectionButton.setAttribute("aria-label", "Back to Selection Page");
+      selectionButton.title = "Back to Selection Page";
+      selectionButton.innerHTML = '<img src="skip.png" alt="" />';
+      selectionButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goToSelectionPage();
+      });
+      front.append(selectionButton);
+    }
+    if (page.title === "Kali") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate kali-plate";
+      titlePlate.innerHTML = '<img class="kali-nameplate-image" src="NPKALI.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Tara") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate tara-plate";
+      titlePlate.innerHTML = '<img class="tara-nameplate-image" src="NPTARA.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Tripura Sundari") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate tripura-plate";
+      titlePlate.innerHTML = '<img class="tripura-nameplate-image" src="NPTS.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Bhuvaneswari") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate bhuvaneswari-plate";
+      titlePlate.innerHTML = '<img class="bhuvaneswari-nameplate-image" src="NPBV.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Bhairavi") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate bhairavi-plate";
+      titlePlate.innerHTML = '<img class="bhairavi-nameplate-image" src="NPB.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Chinnamasta") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate chinnamasta-plate";
+      titlePlate.innerHTML = '<img class="chinnamasta-nameplate-image" src="NPCM.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Dhumavati") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate dhumavati-plate";
+      titlePlate.innerHTML = '<img class="dhumavati-nameplate-image" src="NPDB.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Bagalamukhi") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate bagalamukhi-plate";
+      titlePlate.innerHTML = '<img class="bagalamukhi-nameplate-image" src="NPBM.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Matangi") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate matangi-plate";
+      titlePlate.innerHTML = '<img class="matangi-nameplate-image" src="NPM.png" alt="" />';
+      front.append(titlePlate);
+    }
+    if (page.title === "Kamala") {
+      const titlePlate = document.createElement("div");
+      titlePlate.className = "plate kamala-plate";
+      titlePlate.innerHTML = '<img class="kamala-nameplate-image" src="NPK.png" alt="" />';
+      front.append(titlePlate);
+    }
     if (!page.cover && page.bn) {
       const textWrap = document.createElement("div");
       textWrap.className = "goddess-text-wrap";
@@ -363,9 +538,19 @@ function updateChrome() {
 
   folio.textContent = `${index + 1} / ${PAGES.length}`;
   folio.setAttribute("aria-label", `Page ${index + 1} of ${PAGES.length}`);
+  const showCoverHotspots = index === 1 && !busy;
+  kaliCoverHotspot.hidden = !showCoverHotspots;
+  taraCoverHotspot.hidden = !showCoverHotspots;
+  tripuraCoverHotspot.hidden = !showCoverHotspots;
+  bhairaviCoverHotspot.hidden = !showCoverHotspots;
+  chinnamastaCoverHotspot.hidden = !showCoverHotspots;
+  dhumavatiCoverHotspot.hidden = !showCoverHotspots;
+  bagalamukhiCoverHotspot.hidden = !showCoverHotspots;
+  matangiCoverHotspot.hidden = !showCoverHotspots;
+  kamalaCoverHotspot.hidden = !showCoverHotspots;
   document.body.classList.toggle("cover-ready", index === 0);
   book.classList.toggle("at-start", index === 0);
-  book.classList.toggle("at-kali", index === 1);
+  book.classList.toggle("at-kali", index === 2);
   book.classList.toggle("at-end", index === PAGES.length - 1);
   hint.textContent = index === 0
     ? "Begin the journey with the right arrow, a page edge, or a swipe."
@@ -417,7 +602,7 @@ function goNext() {
   playPageFlipSound();
   updateChrome();
   book.classList.remove("at-start");
-  book.classList.toggle("at-kali", index + 1 === 1);
+  book.classList.toggle("at-kali", index + 1 === 2);
   book.classList.toggle("at-end", index + 1 === PAGES.length - 1);
 
   if (reduceMotion) {
@@ -435,6 +620,167 @@ function goNext() {
   leaf.addEventListener("animationend", done);
 }
 
+function goToTaraFromContents() {
+  if (busy || index !== 1) return;
+  const taraIndex = PAGES.findIndex((page) => page.title === "Tara");
+  if (taraIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < taraIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = taraIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToKaliFromContents() {
+  if (busy || index !== 1) return;
+  const kaliIndex = PAGES.findIndex((page) => page.title === "Kali");
+  if (kaliIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < kaliIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = kaliIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToTripuraFromContents() {
+  if (busy || index !== 1) return;
+  const tripuraIndex = PAGES.findIndex((page) => page.title === "Tripura Sundari");
+  if (tripuraIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < tripuraIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = tripuraIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToBhairaviFromContents() {
+  if (busy || index !== 1) return;
+  const bhairaviIndex = PAGES.findIndex((page) => page.title === "Bhairavi");
+  if (bhairaviIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < bhairaviIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = bhairaviIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToChinnamastaFromContents() {
+  if (busy || index !== 1) return;
+  const chinnamastaIndex = PAGES.findIndex((page) => page.title === "Chinnamasta");
+  if (chinnamastaIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < chinnamastaIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = chinnamastaIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToDhumavatiFromContents() {
+  if (busy || index !== 1) return;
+  const dhumavatiIndex = PAGES.findIndex((page) => page.title === "Dhumavati");
+  if (dhumavatiIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < dhumavatiIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = dhumavatiIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToBagalamukhiFromContents() {
+  if (busy || index !== 1) return;
+  const bagalamukhiIndex = PAGES.findIndex((page) => page.title === "Bagalamukhi");
+  if (bagalamukhiIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < bagalamukhiIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = bagalamukhiIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToMatangiFromContents() {
+  if (busy || index !== 1) return;
+  const matangiIndex = PAGES.findIndex((page) => page.title === "Matangi");
+  if (matangiIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < matangiIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = matangiIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToKamalaFromContents() {
+  if (busy || index !== 1) return;
+  const kamalaIndex = PAGES.findIndex((page) => page.title === "Kamala");
+  if (kamalaIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < kamalaIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = kamalaIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToSelectionPage() {
+  if (busy || index <= 1) return;
+
+  leaves.forEach((leaf, pageIndex) => {
+    const turned = pageIndex < 1;
+    leaf.classList.remove("flipping-forward", "flipping-back");
+    leaf.classList.toggle("turned", turned);
+    leaf.style.zIndex = String(stackZ(pageIndex, turned));
+  });
+
+  index = 1;
+  returningHome = false;
+  book.classList.remove("fast-home", "near-cover-home");
+  updateChrome();
+  syncLanguageControls();
+}
+
 function goPrev() {
   if (busy || index <= 0) return;
   const leaf = leaves[index - 1];
@@ -445,7 +791,7 @@ function goPrev() {
   }
   updateChrome();
   if (!returningFromEnd) book.classList.remove("at-end");
-  book.classList.toggle("at-kali", index - 1 === 1);
+  book.classList.toggle("at-kali", index - 1 === 2);
   book.classList.toggle("at-start", index - 1 === 0);
   book.classList.toggle("near-cover-home", returningHome && index === 1);
 
@@ -546,6 +892,13 @@ function updateLanguageButtonIcon() {
   if (image) image.src = isBengali ? "translate 1.png" : "translate.png";
 }
 
+function setContentsCoverLanguage(useBengali) {
+  const coverImage = leaves[1]?.querySelector(".face.front > img");
+  if (coverImage) {
+    coverImage.src = useBengali ? "beng COVER PAGE 1.png" : "COVER PAGE 1.png";
+  }
+}
+
 function syncGoddessTextLanguage(useBengali) {
   document.querySelectorAll(".goddess-text").forEach((textNode) => {
     const nextText = useBengali ? textNode.dataset.bengali : textNode.dataset.english;
@@ -559,6 +912,7 @@ languageHit.addEventListener("click", () => {
   const switchToBengali = languageHit.getAttribute("aria-pressed") !== "true";
   languageHit.setAttribute("aria-pressed", String(switchToBengali));
   updateLanguageButtonIcon();
+  setContentsCoverLanguage(switchToBengali);
   setDisclaimerLanguage(switchToBengali);
   syncGoddessTextLanguage(switchToBengali);
 });
@@ -571,6 +925,7 @@ languageImage.addEventListener("error", () => {
 function syncLanguageControls() {
   const switchToBengali = languageHit.getAttribute("aria-pressed") === "true";
   updateLanguageButtonIcon();
+  setContentsCoverLanguage(switchToBengali);
   setDisclaimerLanguage(switchToBengali);
   syncGoddessTextLanguage(switchToBengali);
 }
@@ -584,7 +939,7 @@ function setDisclaimerLanguage(useBengali) {
   });
 }
 
-book.append(prevHit, nextHit, homeHit, languageHit);
+book.append(prevHit, nextHit, homeHit, languageHit, kaliCoverHotspot, taraCoverHotspot, tripuraCoverHotspot, bhairaviCoverHotspot, chinnamastaCoverHotspot, dhumavatiCoverHotspot, bagalamukhiCoverHotspot, matangiCoverHotspot, kamalaCoverHotspot);
 
 prevBtn.addEventListener("click", goPrev);
 nextBtn.addEventListener("click", goNext);
