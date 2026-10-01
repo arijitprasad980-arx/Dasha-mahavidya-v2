@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasha Mahavidya</title>
+  <script>
+    (function () {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+      const target = isMobile
+        ? "./mobile/index.html"
+        : "./pc/index.html";
+
+      window.location.replace(target);
+    })();
+  </script>
+</head>
+<body>
+  <p>Opening Dasha Mahavidya...</p>
+  <noscript>
+    <p>
+      <a href="./mobile/index.html">Open mobile website</a>
+      <br>
+      <a href="./pc/index.html">Open PC website</a>
+    </p>
+  </noscript>
+</body>
+</html>
