@@ -69,6 +69,17 @@ tripuraCoverHotspot.addEventListener("click", (event) => {
   goToTripuraFromContents();
 });
 
+const bhuvaneswariCoverHotspot = document.createElement("button");
+bhuvaneswariCoverHotspot.type = "button";
+bhuvaneswariCoverHotspot.className = "bhuvaneswari-cover-hotspot";
+bhuvaneswariCoverHotspot.setAttribute("aria-label", "Open Bhuvaneswari page");
+bhuvaneswariCoverHotspot.hidden = true;
+bhuvaneswariCoverHotspot.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  goToBhuvaneswariFromContents();
+});
+
 const bhairaviCoverHotspot = document.createElement("button");
 bhairaviCoverHotspot.type = "button";
 bhairaviCoverHotspot.className = "bhairavi-cover-hotspot";
@@ -542,6 +553,7 @@ function updateChrome() {
   kaliCoverHotspot.hidden = !showCoverHotspots;
   taraCoverHotspot.hidden = !showCoverHotspots;
   tripuraCoverHotspot.hidden = !showCoverHotspots;
+  bhuvaneswariCoverHotspot.hidden = !showCoverHotspots;
   bhairaviCoverHotspot.hidden = !showCoverHotspots;
   chinnamastaCoverHotspot.hidden = !showCoverHotspots;
   dhumavatiCoverHotspot.hidden = !showCoverHotspots;
@@ -664,6 +676,22 @@ function goToTripuraFromContents() {
   }
 
   index = tripuraIndex;
+  updateChrome();
+  syncLanguageControls();
+}
+
+function goToBhuvaneswariFromContents() {
+  if (busy || index !== 1) return;
+  const bhuvaneswariIndex = PAGES.findIndex((page) => page.title === "Bhuvaneswari");
+  if (bhuvaneswariIndex <= index) return;
+
+  for (let pageIndex = 0; pageIndex < bhuvaneswariIndex; pageIndex += 1) {
+    const leaf = leaves[pageIndex];
+    leaf.classList.add("turned");
+    leaf.style.zIndex = String(stackZ(pageIndex, true));
+  }
+
+  index = bhuvaneswariIndex;
   updateChrome();
   syncLanguageControls();
 }
@@ -939,7 +967,7 @@ function setDisclaimerLanguage(useBengali) {
   });
 }
 
-book.append(prevHit, nextHit, homeHit, languageHit, kaliCoverHotspot, taraCoverHotspot, tripuraCoverHotspot, bhairaviCoverHotspot, chinnamastaCoverHotspot, dhumavatiCoverHotspot, bagalamukhiCoverHotspot, matangiCoverHotspot, kamalaCoverHotspot);
+book.append(prevHit, nextHit, homeHit, languageHit, kaliCoverHotspot, taraCoverHotspot, tripuraCoverHotspot, bhuvaneswariCoverHotspot, bhairaviCoverHotspot, chinnamastaCoverHotspot, dhumavatiCoverHotspot, bagalamukhiCoverHotspot, matangiCoverHotspot, kamalaCoverHotspot);
 
 prevBtn.addEventListener("click", goPrev);
 nextBtn.addEventListener("click", goNext);

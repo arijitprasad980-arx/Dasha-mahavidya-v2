@@ -186,6 +186,7 @@ body.cover-ready {
 .kali-cover-hotspot,
 .tara-cover-hotspot,
 .tripura-cover-hotspot,
+.bhuvaneswari-cover-hotspot,
 .bhairavi-cover-hotspot,
 .chinnamasta-cover-hotspot,
 .dhumavati-cover-hotspot,
@@ -206,6 +207,7 @@ body.cover-ready {
 .kali-cover-hotspot[hidden],
 .tara-cover-hotspot[hidden],
 .tripura-cover-hotspot[hidden],
+.bhuvaneswari-cover-hotspot[hidden],
 .bhairavi-cover-hotspot[hidden],
 .chinnamasta-cover-hotspot[hidden],
 .dhumavati-cover-hotspot[hidden],
@@ -225,6 +227,10 @@ body.cover-ready {
 
 .tripura-cover-hotspot {
   left: 47.5%;
+}
+
+.bhuvaneswari-cover-hotspot {
+  left: 61%;
 }
 
 .bhairavi-cover-hotspot {
